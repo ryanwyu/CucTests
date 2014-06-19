@@ -14,8 +14,14 @@ module KnowsTheUserInterface
     def withdraw_from(account, amount)
       Sinatra::Application.account = account
       visit '/'
-      #fill_in 'Amount', :with => amount
+      fill_in 'Amount', :with => amount
       click_button 'Withdraw'
+    end
+    
+    def withdraw_from_fixed(account, amount)
+      Sinatra::Application.account = account
+      visit '/'
+      click_button amount.to_i      
     end
     
   end

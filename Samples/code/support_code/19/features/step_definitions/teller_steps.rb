@@ -9,3 +9,7 @@
 When /^I withdraw (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
   teller.withdraw_from(my_account, amount)
 end
+
+When /^I withdraw the money with fixed button (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
+  teller.withdraw_from_fixed(my_account, amount)
+end
