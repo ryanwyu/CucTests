@@ -48,9 +48,9 @@ get '/' do
   <html>
     <body>
       <form action="/withdraw" method="post">
-        <label for="amount">Amount</label>
-        <input type="text" id="amount" name="amount">
-        <button type="submit">Withdraw</button>
+        <!#--label for="amount"Amount</label->
+        <!#--input type="text" id="amount" name="amount"->
+        <button type="submit">Withdraw 20</button>
       </form>
     </body>
   </html>
@@ -64,6 +64,6 @@ end
 
 post '/withdraw' do
   teller = Teller.new(settings.cash_slot)
-  teller.withdraw_from(settings.account, params[:amount].to_i)
+  #teller.withdraw_from(settings.account, params[:amount].to_i)
+  teller.withdraw_from(settings.account, 20)
 end
-
