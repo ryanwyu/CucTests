@@ -16,7 +16,17 @@ class Account
   end
 
   def debit(amount)
-    @balance -= amount
+    if amount <= @balance
+      @balance -= amount
+    else
+      @msg = "Wanring! Your accont has no sufficient amount!"
+      return false
+    end
+    
+  end
+  
+  def warning
+    @msg or raise("no warning!")
   end
 end
 
@@ -26,8 +36,11 @@ class Teller
   end
   
   def withdraw_from(account, amount)
-    account.debit(amount)
-    @cash_slot.dispense(amount)
+    if account.debit(amount)
+      @cash_slot.dispense(amount)
+    else
+      @cash_slot.dispense(0)
+    end
   end
 end
 

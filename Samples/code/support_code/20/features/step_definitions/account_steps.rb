@@ -15,3 +15,7 @@ Then /^the balance of my account should be (#{CAPTURE_CASH_AMOUNT})$/ do |amount
     "Expected the balance to be #{amount} but it was #{my_account.balance}"
 end
 
+Then /^I should be told that I have insufficient funds in my account$/ do
+  my_account.warning.should eq("Wanring! Your accont has no sufficient amount!")
+end
+
