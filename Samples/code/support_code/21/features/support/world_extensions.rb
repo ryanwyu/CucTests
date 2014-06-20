@@ -17,10 +17,22 @@ module KnowsTheUserInterface
       fill_in 'Amount', :with => amount
       click_button 'Withdraw'
     end
+    
+    def check_balance(account)
+      Sinatra::Application.account = account
+      visit '/'
+      click_button 'Show Balance'
+    end
+    
+    def show_balance(account)
+      Sinatra::Application.account = account
+      account.balance
+    end
   end
 
   def my_account
-    @my_account ||= Account.new
+    #@my_account ||= Account.new
+    Sinatra::Application.account
   end
 
   def cash_slot

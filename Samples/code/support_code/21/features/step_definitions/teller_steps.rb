@@ -9,3 +9,12 @@
 When /^I withdraw (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
   teller.withdraw_from(my_account, amount)
 end
+
+When /^I check my balance$/ do
+  teller.check_balance(my_account)
+end
+
+Then /^I should see that my balance is (#{CAPTURE_CASH_AMOUNT})$/ do |amount|
+  teller.show_balance(my_account).should eq(amount),
+    "Expected the balance to be #{amount} but it was #{my_account.balance}"
+end

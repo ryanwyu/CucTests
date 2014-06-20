@@ -52,18 +52,32 @@ get '/' do
         <input type="text" id="amount" name="amount">
         <button type="submit">Withdraw</button>
       </form>
+      <hr>
+      
+      <form action="/showbalance" method="get">
+        <button type="submit">Show Balance</button>
+      </form>
     </body>
   </html>
   }
 end
 
 set :cash_slot, CashSlot.new
-set :account do
-  fail 'account has not been set'
-end
+set :account, Account.new
 
 post '/withdraw' do
   teller = Teller.new(settings.cash_slot)
   teller.withdraw_from(settings.account, params[:amount].to_i)
 end
 
+get '/showbalance' do
+  account = settings.account
+  %{
+  <html>
+    <body>
+        <h1> Your Balance is:</h1>
+        <label for="balance"> $#{account.balance}.00</label>
+    </body>
+  </html>
+  }
+end

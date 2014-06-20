@@ -7,6 +7,6 @@
 # Visit http://www.pragmaticprogrammer.com/titles/hwcuc for more book information.
 #---
 After do |scenario|
-  save_and_open_page if scenario.failed?
+    save_and_open_page if scenario.failed?
 end
 
